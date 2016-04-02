@@ -25,21 +25,22 @@ public class Primes
 		for (int i = 2; i <= max; i ++) {
 			candidates.add(i);
 		}
-		
 
 		AList<Integer> primes = new AList<Integer>(max);
 		AList<Integer> composites = new AList<Integer>(max);
 
-		int prime = candidates.remove(1);
-		System.out.println("Prime: "+prime);
-		
-		primes.add(prime);
-		
-		getComposites(candidates, composites, prime);
-		
-		System.out.println("The candidates list is " + candidates);
-		System.out.println("The primes list is     " + primes);
-		System.out.println("The composites list is " + composites);
+		while (!candidates.isEmpty()) {
+			int prime = candidates.remove(1);
+			System.out.println("Prime: "+prime);
+
+			primes.add(prime);
+
+			getComposites(candidates, composites, prime);
+
+			System.out.println("  The candidates list is " + candidates);
+			System.out.println("  The primes list is     " + primes);
+			System.out.println("  The composites list is " + composites);
+		}
 	}
 
 
@@ -54,7 +55,7 @@ public class Primes
 	public static void getComposites(ListInterface<Integer> candidates, ListInterface<Integer> composites, Integer prime)
 	{
 		int index = 1;
-		while (index < candidates.getLength()) {
+		while (index <= candidates.getLength()) {
 			if (candidates.getEntry(index)%prime == 0) {
 				int temp = candidates.remove(index);
 				composites.add(temp);
