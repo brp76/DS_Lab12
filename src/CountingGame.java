@@ -38,9 +38,10 @@ public class CountingGame
 		rhyme = getRhyme();
 
 		// ADD CODE HERE TO PLAY THE GAME
-		position = doRhyme(players, rhyme, position);
-		System.out.println("The players list is " + players);
-		
+		while (players.getLength() > 1) {
+			position = doRhyme(players, rhyme, position);
+			System.out.println("The players list is " + players);
+		}
 
 		System.out.println("The winner is " + players.getEntry(1));
 	}
@@ -71,6 +72,9 @@ public class CountingGame
 		}
 		System.out.println("Removing player "+players.getEntry(toRemove));
 		players.remove(toRemove);
+		if (playerIndex > 1) {
+			playerIndex --;
+		}
 		return playerIndex;
 
 	}
